@@ -111,7 +111,32 @@ function displayWeatherInfo(data) {
 
 // this function will get the specific emoji for the weather id returned
 function getWeatherEmoji(weatherId) {
-
+    switch(true) {
+        // thunderstorm
+        case(weatherId >= 200 && weatherId < 300):
+            return "⛈️";
+        // drizzle
+        case(weatherId >= 300 && weatherId < 400):
+            return "☔️";
+        // rain
+        case(weatherId >= 500 && weatherId < 600):
+            return "🌧️";
+        // snow
+        case(weatherId >= 600 && weatherId < 700):
+            return "❄️";
+        // fog
+        case(weatherId >= 700 && weatherId < 800):
+            return "🌫️";
+        // sunny
+        case(weatherId === 800):
+            return "☀️";
+        // cloudy
+        case(weatherId >= 801 && weatherId < 810):
+            return "☁️";
+        // unknown
+        default:
+            return "︖"
+    }
 }
 
 // this function will display any potential error messages
