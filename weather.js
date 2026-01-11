@@ -83,19 +83,30 @@ function displayWeatherInfo(data) {
     locDisplay.textContent = `${lat}, ${lon}`;
     tempDisplay.textContent = `${((temp - 273.15) * (9/5) + 32).toFixed(2)}°F`;
     realFeelDisplay.textContent = `Real Feel: ${((feels_like - 273.15) * (9/5) + 32).toFixed(2)}°F`;
+    windDisplay.textContent = `Wind Speed: ${speed}m/s @ ${deg}°`;
+    humidityDisplay.textContent = `Humidity: ${humidity}`;
+    descDisplay.textContent = description;
+    weatherEmoji.textContent = getWeatherEmoji(id);
 
     // apply the styling to each element
     cityDisplay.classList.add("cityDisplay");
     locDisplay.classList.add("locDisplay");
     tempDisplay.classList.add("tempDisplay");
     realFeelDisplay.classList.add("realFeelDisplay");
+    windDisplay.classList.add("windDisplay");
+    humidityDisplay.classList.add("humidityDisplay");
+    descDisplay.classList.add("descDisplay");
+    weatherEmoji.classList.add("weatherEmoji");
 
     // add it to the card where we display the elements
     card.appendChild(cityDisplay);
     card.appendChild(locDisplay);
     card.appendChild(tempDisplay);
     card.appendChild(realFeelDisplay);
-
+    card.appendChild(windDisplay);
+    card.appendChild(humidityDisplay);
+    card.appendChild(descDisplay);
+    card.appendChild(weatherEmoji);
 }
 
 // this function will get the specific emoji for the weather id returned
