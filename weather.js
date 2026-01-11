@@ -36,7 +36,20 @@ weatherForm.addEventListener("submit", async event => {
 
 // this function will get the city inputted and return data
 async function getWeatherData(city) {
+    // this url is what we will pas to get data on the city inputted
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+    // response fetches the url for the specified city inputted
+    const response = await fetch(apiUrl);
+    // display in the console if we got back the proper data for the inputted city
+    console.log(response);
 
+    // if the response is not ok, display the error message
+    if(!response.ok) {
+        throw new Error("Could Not Fetch Weather Data");
+    }
+
+    // at the end of this function, return the response in a json object
+    return await response.json();
 }
 
 // this function will gather specific data and display it
