@@ -54,6 +54,47 @@ async function getWeatherData(city) {
 
 // this function will gather specific data and display it
 function displayWeatherInfo(data) {
+    // display the weather data json format in the console
+    console.log(data);
+    // get the data we want to display
+    const {name: city, 
+           main: {temp, humidity, feels_like}, 
+           weather: [{description, id}],
+           coord: {lat, lon},
+           wind: {deg, speed}} = data;
+    
+    // reset the text of the card from a previous city
+    card.textContent = "";
+    // display the card
+    card.style.display = "flex";
+    
+    // create our constants for each data we plan on displaying
+    const cityDisplay = document.createElement("h1");
+    const locDisplay = document.createElement("p");
+    const tempDisplay = document.createElement("p");
+    const realFeelDisplay = document.createElement("p");
+    const windDisplay = document.createElement("p");
+    const humidityDisplay = document.createElement("p");
+    const descDisplay = document.createElement("p");
+    const weatherEmoji = document.createElement("p");
+
+    // change the text content for the html element to our data
+    cityDisplay.textContent = city;
+    locDisplay.textContent = `${lat}, ${lon}`;
+    tempDisplay.textContent = `${((temp - 273.15) * (9/5) + 32).toFixed(2)}°F`;
+    realFeelDisplay.textContent = `Real Feel: ${((feels_like - 273.15) * (9/5) + 32).toFixed(2)}°F`;
+
+    // apply the styling to each element
+    cityDisplay.classList.add("cityDisplay");
+    locDisplay.classList.add("locDisplay");
+    tempDisplay.classList.add("tempDisplay");
+    realFeelDisplay.classList.add("realFeelDisplay");
+
+    // add it to the card where we display the elements
+    card.appendChild(cityDisplay);
+    card.appendChild(locDisplay);
+    card.appendChild(tempDisplay);
+    card.appendChild(realFeelDisplay);
 
 }
 
