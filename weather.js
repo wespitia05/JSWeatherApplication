@@ -8,7 +8,30 @@ const apiKey = "0b27dee62b5909ebbbf9788a2e85e2b2";
 
 // event listener for when we press the submit button
 weatherForm.addEventListener("submit", async event => {
-    
+    // submit forms tend to refresh after pressing the button, this will prevent that
+    event.preventDefault();
+    // store the city we input into the "city" object
+    const city = cityInput.value;
+
+    // if a city is inputted correctly, continue
+    if(city) {
+        // try block in case of any potential failures
+        try {
+            // wait for the getWeatherData to return data
+            const weatherData = await getWeatherData(city);
+            // pass the data into the displayWeatherInfo function
+            displayWeatherInfo(weatherData);
+        }
+        // catch any errors and display them
+        catch(error) {
+            console.error(error);
+            displayError(error);
+        }
+    }
+    // if not inputted correctly, display error message
+    else {
+        displayError("Please Enter A City");
+    }
 });
 
 // this function will get the city inputted and return data
