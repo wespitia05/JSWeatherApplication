@@ -83,7 +83,7 @@ function displayWeatherInfo(data) {
     locDisplay.textContent = `${lat}, ${lon}`;
     tempDisplay.textContent = `${((temp - 273.15) * (9/5) + 32).toFixed(2)}°F`;
     realFeelDisplay.textContent = `Real Feel: ${((feels_like - 273.15) * (9/5) + 32).toFixed(2)}°F`;
-    windDisplay.textContent = `Wind Speed: ${speed}m/s @ ${deg}°`;
+    windDisplay.textContent = `Wind Speed: ${getWindDirection(deg)} ${speed}m/s`;
     humidityDisplay.textContent = `Humidity: ${humidity}`;
     descDisplay.textContent = description;
     weatherEmoji.textContent = getWeatherEmoji(id);
@@ -136,6 +136,36 @@ function getWeatherEmoji(weatherId) {
         // unknown
         default:
             return "︖"
+    }
+}
+
+// this function will determine direction wind is blowing based on degree
+function getWindDirection(deg) {
+    switch(true) {
+        // north
+        case(deg >= 337.5 || deg < 22.5):
+            return "↑";
+        // north east
+        case(deg >= 22.5 && deg < 67.5):
+            return "↗";
+        // east
+        case(deg >= 67.5 && deg < 112.5):
+            return "→";
+        // south east
+        case(deg >= 112.5 && deg < 157.5):
+            return "↘";
+        // south
+        case(deg >= 157.5 && deg < 202.5):
+            return "↓";
+        // south west
+        case(deg >= 202.5 && deg < 247.5):
+            return "↙";
+        // west
+        case(deg >= 247.5 && deg < 292.5):
+            return "←";
+        // north west
+        case(deg >= 292.5 && deg < 337.5):
+            return "↖";
     }
 }
 
