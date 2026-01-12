@@ -84,7 +84,7 @@ function displayWeatherInfo(data) {
     tempDisplay.textContent = `${((temp - 273.15) * (9/5) + 32).toFixed(2)}°F`;
     realFeelDisplay.textContent = `Real Feel: ${((feels_like - 273.15) * (9/5) + 32).toFixed(2)}°F`;
     windDisplay.textContent = `Wind Speed: ${getWindDirection(deg)} ${speed}m/s`;
-    humidityDisplay.textContent = `Humidity: ${humidity}`;
+    humidityDisplay.textContent = `Humidity: ${humidity}%`;
     descDisplay.textContent = description;
     weatherEmoji.textContent = getWeatherEmoji(id);
 
